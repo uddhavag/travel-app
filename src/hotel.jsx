@@ -61,8 +61,6 @@ const Hotel = () => {
       };
 
       const data = await getHotelOffers(token, queryParams);
-      console.log("Amadeus API hotel search response:", data);
-
       if (!data || data.length === 0) {
         setError("No hotels found from API, showing mock data.");
         setHotels(MOCK_HOTEL_DATA);
@@ -84,29 +82,29 @@ const Hotel = () => {
     <div className="max-w-3xl mx-auto p-6">
       <h2 className="text-xl font-bold text-center mb-6">Hotel Search</h2>
 
-      <div className="flex gap-4 justify-center flex-wrap mb-6">
+      <div className="flex flex-wrap gap-4 justify-center mb-6">
         <input
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
           placeholder="Enter city (New York, Paris, London)"
-          className="border rounded p-2 w-48"
+          className="border rounded p-2 w-full sm:w-48"
         />
         <input
           type="date"
           value={checkInDate}
           onChange={(e) => setCheckInDate(e.target.value)}
-          className="border rounded p-2 w-44"
+          className="border rounded p-2 w-full sm:w-44"
         />
         <input
           type="date"
           value={checkOutDate}
           onChange={(e) => setCheckOutDate(e.target.value)}
-          className="border rounded p-2 w-44"
+          className="border rounded p-2 w-full sm:w-44"
         />
         <button
           onClick={searchHotels}
-          className="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 rounded"
+          className="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded w-full sm:w-auto"
         >
           Search
         </button>
@@ -117,7 +115,6 @@ const Hotel = () => {
 
       {hotels.length > 0 &&
         hotels.map((hotel, idx) => {
-          // Adapt mock data to same structure for display
           const name = hotel.hotel?.name || hotel.name;
           const address =
             hotel.hotel?.address?.lines?.join(", ") || hotel.address?.lines?.join(", ") || "Address N/A";
@@ -126,11 +123,14 @@ const Hotel = () => {
           const currency = hotel.offers?.[0]?.price?.currency || hotel.price?.currency || "";
 
           return (
-            <div key={idx} className="border rounded p-4 mb-4 shadow">
+            <div
+              key={idx}
+              className="border rounded p-4 mb-4 shadow bg-white"
+            >
               <h3 className="text-lg font-semibold mb-2">{name}</h3>
-              <p className="mb-1">{address}</p>
-              <p className="mb-1">Rating: {rating}</p>
-              <p className="mb-1">
+              <p className="mb-1 text-gray-700">{address}</p>
+              <p className="mb-1 text-gray-700">Rating: {rating}</p>
+              <p className="mb-1 text-gray-700">
                 Price: {price} {currency}
               </p>
             </div>

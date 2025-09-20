@@ -99,6 +99,7 @@ const Flight = () => {
             required
             maxLength={3}
           />
+          <span className="text-xs text-gray-500 mt-1">E.g. DEL</span>
         </div>
 
         <div className="flex flex-col">
@@ -109,10 +110,11 @@ const Flight = () => {
             type="text"
             value={destination}
             onChange={(e) => setDestination(e.target.value.toUpperCase())}
-            placeholder="Enter To Destination (e.g. BLR)"
+            placeholder="Enter To Destination (e.g. BOM)"
             required
             maxLength={3}
           />
+          <span className="text-xs text-gray-500 mt-1">E.g. BOM</span>
         </div>
 
         <div className="flex flex-col">
@@ -125,6 +127,7 @@ const Flight = () => {
             onChange={(e) => setDepartureDate(e.target.value)}
             required
           />
+          <span className="text-xs text-gray-500 mt-1">Format: DD/MM/YYYY</span>
         </div>
 
         <button
